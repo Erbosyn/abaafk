@@ -194,7 +194,7 @@
     <div class="grid grid-cols-3 gap-2 sm:gap-3">
       <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-3 sm:p-4 text-center">
         <div class="text-2xl mb-1">⏱</div>
-        <p class="text-xs sm:text-sm font-semibold leading-tight">50 минуттық жеке сабақтар</p>
+        <p class="text-xs sm:text-sm font-semibold leading-tight">45 минуттық жеке сабақтар</p>
       </div>
       <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-3 sm:p-4 text-center">
         <div class="text-2xl mb-1">🧠</div>
@@ -228,17 +228,17 @@
 
     <!-- Symptom Buttons -->
     <div class="space-y-3 mb-6" id="symptom-list">
-      <button class="symptom-btn" data-symptom="🗣 Тілі шықпай жүр (ЗРР, ЗПР) немесе сөздік қоры аз" onclick="toggleSymptom(this)">
+      <button class="symptom-btn" data-symptom="🗣 Тілі кешеуілдеген, сөйлемейді немесе сөздік қоры тым аз" onclick="toggleSymptom(this)">
         <span class="check-circle"></span>
-        <span>🗣 Тілі шықпай жүр (ЗРР, ЗПР) немесе сөздік қоры аз</span>
+        <span>🗣 Тілі кешеуілдеген, сөйлемейді немесе сөздік қоры тым аз</span>
       </button>
       <button class="symptom-btn" data-symptom="👂 Атын атап шақырғанда бұрылып қарамайды" onclick="toggleSymptom(this)">
         <span class="check-circle"></span>
         <span>👂 Атын атап шақырғанда бұрылып қарамайды</span>
       </button>
-      <button class="symptom-btn" data-symptom="⚡ Бір орында отыра алмайды, тоқтамай жүгіреді (СДВГ)" onclick="toggleSymptom(this)">
+      <button class="symptom-btn" data-symptom="⚡ Бір орында отыра алмайды, зейіні шашыраңқы, тоқтамай жүгіреді" onclick="toggleSymptom(this)">
         <span class="check-circle"></span>
-        <span>⚡ Бір орында отыра алмайды, тоқтамай жүгіреді (СДВГ)</span>
+        <span>⚡ Бір орында отыра алмайды, зейіні шашыраңқы, тоқтамай жүгіреді</span>
       </button>
       <button class="symptom-btn" data-symptom="🦶 Аяғының ұшымен (носочкимен) жүреді" onclick="toggleSymptom(this)">
         <span class="check-circle"></span>
@@ -252,13 +252,13 @@
         <span class="check-circle"></span>
         <span>🧸 Денесі тым жұмсақ (гипотонус), тез шаршайды, жиі сүрінеді</span>
       </button>
-      <button class="symptom-btn" data-symptom="🧩 Аутизм (РАС) белгілері бар немесе көз контактісі жоқ" onclick="toggleSymptom(this)">
+      <button class="symptom-btn" data-symptom="👀 Көз түйістірмейді (көз контактісі жоқ), өз әлемінде жүргендей" onclick="toggleSymptom(this)">
         <span class="check-circle"></span>
-        <span>🧩 Аутизм (РАС) белгілері бар немесе көз контактісі жоқ</span>
+        <span>👀 Көз түйістірмейді (көз контактісі жоқ), өз әлемінде жүргендей</span>
       </button>
-      <button class="symptom-btn" data-symptom="💧 Энурез немесе сенсорлық сезімталдық бұзылысы бар" onclick="toggleSymptom(this)">
+      <button class="symptom-btn" data-symptom="💧 Сенсорлық сезімталдық немесе денесін басқару бұзылысы бар" onclick="toggleSymptom(this)">
         <span class="check-circle"></span>
-        <span>💧 Энурез немесе сенсорлық сезімталдық бұзылысы бар</span>
+        <span>💧 Сенсорлық сезімталдық немесе денесін басқару бұзылысы бар</span>
       </button>
     </div>
 
@@ -355,12 +355,12 @@
   <div class="max-w-2xl mx-auto">
     <div class="text-center mb-8">
       <span class="inline-block bg-green-50 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
-        Тиімді формула
+        Нәтижелі жүйе
       </span>
       <h2 class="text-2xl sm:text-3xl font-black text-brand-blue">
         Сабақ қалай өтеді?
       </h2>
-      <p class="text-slate-500 text-sm mt-2">50 минуттық ғылыми негізделген бағдарлама</p>
+      <p class="text-slate-500 text-sm mt-2">45 минут: 40 минут таза сабақ + 5 минут кері байланыс</p>
     </div>
 
     <div class="space-y-6 relative">
@@ -373,45 +373,28 @@
         <div class="bg-brand-soft rounded-2xl p-5 flex-1">
           <div class="flex items-center gap-2 mb-2">
             <span class="text-xl">🏋️</span>
-            <span class="text-xs font-bold text-brand-blue bg-blue-100 px-2 py-0.5 rounded-full">35–40 минут</span>
+            <span class="text-xs font-bold text-brand-blue bg-blue-100 px-2.5 py-1 rounded-full">40 минут</span>
           </div>
-          <h3 class="font-black text-brand-blue text-base mb-1">Белсенді нейро-жаттығулар</h3>
+          <h3 class="font-black text-brand-blue text-base mb-1">Таза қарқынды сабақ</h3>
           <p class="text-slate-600 text-sm leading-relaxed">
-            Кедергілер жолағы, бұлшықетке жүктеме, тепе-теңдік және АВА тапсырмалары.
+            Нейро-жаттығулар, кедергілер жолағы, сенсорлық интеграция (гамак, балансирлер, салмақты доптар) және АВА тапсырмалары — баланың назары мен денесін толық іске қосамыз.
           </p>
         </div>
       </div>
 
       <!-- Step 2 -->
       <div class="flex gap-4 items-start timeline-step relative">
-        <div class="flex-shrink-0 w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-md">
-          2
-        </div>
-        <div class="bg-purple-50 rounded-2xl p-5 flex-1">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl">🌊</span>
-            <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full">5–7 минут</span>
-          </div>
-          <h3 class="font-black text-purple-800 text-base mb-1">Сенсорлық тынышталу / Заземление</h3>
-          <p class="text-slate-600 text-sm leading-relaxed">
-            Сенсорлық гамак-коконда тербелу немесе ауыр көрпемен релаксация — <strong>бала сабақтан жыламай, тыныш шығады.</strong>
-          </p>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="flex gap-4 items-start timeline-step relative">
         <div class="flex-shrink-0 w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-md">
-          3
+          2
         </div>
         <div class="bg-green-50 rounded-2xl p-5 flex-1">
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-xl">💬</span>
-            <span class="text-xs font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded-full">3–5 минут</span>
+            <span class="text-xl">📋</span>
+            <span class="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-full">+5 минут</span>
           </div>
-          <h3 class="font-black text-green-800 text-base mb-1">Ата-анамен кері байланыс</h3>
+          <h3 class="font-black text-green-800 text-base mb-1">Ата-анамен кері байланыс және үй жұмысы</h3>
           <p class="text-slate-600 text-sm leading-relaxed">
-            Әр сабақтан соң маман баланың бүгінгі жетістігі мен үй тапсырмасын түсіндіреді.
+            Әр сабақтан соң маман баланың бүгінгі жетістігі мен динамикасын түсіндіреді. Нәтижені жылдам бекіту үшін <strong class="text-green-900">үй жұмысы міндетті түрде беріледі!</strong>
           </p>
         </div>
       </div>
@@ -470,7 +453,7 @@
         <div class="text-4xl mb-3">📋</div>
         <h4 class="font-black text-brand-blue text-sm mb-2">Жеке бағдарлама</h4>
         <p class="text-slate-500 text-xs leading-relaxed">
-          Әр баланың диагнозы мен мінезіне қарай жеке жасалған бағдарлама.
+          Әр баланың жеке ерекшелігі мен мінез-құлқына қарай жасалған арнайы бағдарлама.
         </p>
       </div>
 
