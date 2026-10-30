@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ABA • AFK • ARYS — Арыс қаласындағы заманауи балалар нейродаму орталығы. АВА-терапия, АФК, Сенсорлық интеграция, Нейропсихология." />
+  <title>ABA • AFK • ARYS | Арыс Нейродаму Орталығы</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue:    '#1E3A8A',
+              yellow:  '#F59E0B',
+              green:   '#25D366',
+              lightbg: '#F8FAFC',
+              soft:    '#EFF6FF',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          animation: {
+            pulse2: 'pulse2 2s cubic-bezier(0.4,0,0.6,1) infinite',
+          },
+          keyframes: {
+            pulse2: {
+              '0%,100%': { boxShadow: '0 0 0 0 rgba(37,211,102,0.6)' },
+              '50%':     { boxShadow: '0 0 0 14px rgba(37,211,102,0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #1e293b; }
+
+    /* Checklist items */
+    .symptom-btn {
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 12px 16px;
+      background: #fff; border: 2px solid #e2e8f0;
+      border-radius: 14px; text-align: left; cursor: pointer;
+      font-size: 0.875rem; font-weight: 500; color: #334155;
+      transition: all 0.2s ease;
+    }
+    .symptom-btn.selected {
+      background: #EFF6FF; border-color: #1E3A8A; color: #1E3A8A;
+    }
+    .symptom-btn .check-circle {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 2px solid #cbd5e1; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .symptom-btn.selected .check-circle {
+      background: #1E3A8A; border-color: #1E3A8A;
+    }
+    .symptom-btn.selected .check-circle::after {
+      content: '✓'; color: #fff; font-size: 12px; font-weight: 700;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: linear-gradient(135deg, #1E3A8A 0%, #1d4ed8 50%, #2563eb 100%);
+    }
+
+    /* Floating WA button */
+    .wa-float {
+      position: fixed; bottom: 24px; right: 20px; z-index: 9999;
+    }
+
+    /* Timeline steps */
+    .timeline-step::before {
+      content: ''; position: absolute; left: 20px; top: 52px;
+      bottom: -24px; width: 2px; background: #e2e8f0;
+    }
+    .timeline-step:last-child::before { display: none; }
+
+    /* Card hover */
+    .card-hover { transition: transform 0.25s, box-shadow 0.25s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(30,58,138,0.12); }
+
+    /* Badge shimmer */
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .badge-shimmer {
+      background: linear-gradient(90deg, #FEF3C7, #F59E0B, #FDE68A, #F59E0B, #FEF3C7);
+      background-size: 200% auto;
+      animation: shimmer 3s linear infinite;
+    }
+
+    /* Section fade-in on scroll */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body class="min-h-screen">
+
+<!-- ============================================================
+     FLOATING WHATSAPP BUTTON
+============================================================ -->
+<div class="wa-float">
+  <a href="https://wa.me/77477838363?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5!%20%D0%A1%D0%B0%D0%B9%D1%82%D1%82%D0%B0%D0%BD%20%D3%A9%D1%82%D1%96%D0%BF%20%D1%82%D2%B1%D1%80%D0%BC%D1%8B%D0%BD.%20%D0%9E%D1%80%D1%82%D0%B0%D0%BB%D1%8B%D2%9B%20%D1%82%D1%83%D1%80%D0%B0%D0%BB%D1%8B%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B0%D0%BB%D2%93%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96."
+     target="_blank" rel="noopener"
+     class="flex items-center gap-2 bg-[#25D366] text-white pl-3 pr-4 py-3 rounded-full shadow-2xl animate-[pulse2_2s_cubic-bezier(0.4,0,0.6,1)_infinite] hover:scale-105 transition-transform"
+     style="box-shadow:0 4px 20px rgba(37,211,102,0.45)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="text-sm font-bold leading-tight hidden sm:block">WhatsApp<br>арқылы жазу</span>
+  </a>
+</div>
+
+<!-- ============================================================
+     1-БЛОК: HEADER
+============================================================ -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-slate-100">
+  <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+    <!-- Logo -->
+    <div class="flex flex-col leading-tight">
+      <span class="text-lg sm:text-xl font-black text-brand-blue tracking-tight">ABA • AFK • ARYS</span>
+      <span class="text-[10px] sm:text-xs text-slate-500 font-medium">Арыс қалалық нейродаму орталығы</span>
+    </div>
+    <!-- Right side -->
+    <div class="flex items-center gap-2">
+      <div class="hidden sm:flex items-center gap-1 text-xs text-slate-600 font-medium">
+        <span class="text-base">📍</span>
+        <span>Арыс қ., Тәжібаев 11/1</span>
+      </div>
+      <a href="https://wa.me/77477838363?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5!%20%D0%91%D0%B0%D0%B9%D0%BB%D0%B0%D0%BD%D1%8B%D1%81%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96."
+         target="_blank" rel="noopener"
+         class="bg-brand-blue text-white text-xs font-bold px-4 py-2 rounded-xl hover:bg-blue-800 transition-colors whitespace-nowrap">
+        Байланысу
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     2-БЛОК: HERO SECTION
+============================================================ -->
+<section class="hero-gradient text-white pt-8 pb-10 px-4 relative overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-10 right-10 w-48 h-48 rounded-full bg-white/20 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-brand-yellow/30 blur-3xl"></div>
+  </div>
+
+  <div class="max-w-2xl mx-auto text-center relative z-10">
+    <!-- Badge -->
+    <div class="inline-block mb-5">
+      <span class="badge-shimmer text-slate-800 text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-md">
+        🔥 Енді Шымкентке сабылудың қажеті жоқ — кәсіби мамандар Арыстың өзінде!
+      </span>
+    </div>
+
+    <!-- H1 -->
+    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black leading-snug mb-4 drop-shadow-sm">
+      Балаңыздың тілін, зейінін және дене дамуын
+      <span class="text-brand-yellow"> ойын мен қозғалыс арқылы іске қосамыз!</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="text-blue-100 text-sm sm:text-base leading-relaxed mb-7 max-w-xl mx-auto">
+      Арыс қаласындағы заманауи жабдықталған <strong class="text-white">АВА-терапия, АФК (Адаптивті дене шынықтыру), Сенсорлық интеграция</strong> және <strong class="text-white">Нейропсихология</strong> орталығы. Нақты нәтижеге жұмыс істейміз!
+    </p>
+
+    <!-- Main CTA -->
+    <a href="https://wa.me/77477838363?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5!%20%D0%A1%D0%B0%D0%B9%D1%82%D1%82%D0%B0%D0%BD%20%D0%B6%D0%B0%D0%B7%D1%8B%D0%BF%20%D1%82%D2%B1%D1%80%D0%BC%D1%8B%D0%BD.%20%D0%91%D0%B0%D0%BB%D0%B0%D0%BC%D0%B4%D1%8B%20%D0%B4%D0%B8%D0%B0%D0%B3%D0%BD%D0%BE%D1%81%D1%82%D0%B8%D0%BA%D0%B0%D2%93%D0%B0%20%D0%B6%D3%99%D0%BD%D0%B5%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F%D2%93%D0%B0%20%D0%B6%D0%B0%D0%B7%D2%93%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96."
+       target="_blank" rel="noopener"
+       class="inline-flex items-center gap-3 bg-[#25D366] hover:bg-green-500 text-white font-black text-base sm:text-lg px-6 py-4 rounded-2xl shadow-2xl transition-all hover:scale-105 active:scale-95 mb-8">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      📲 WhatsApp арқылы консультация алу
+    </a>
+
+    <!-- Trigger Cards -->
+    <div class="grid grid-cols-3 gap-2 sm:gap-3">
+      <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-3 sm:p-4 text-center">
+        <div class="text-2xl mb-1">⏱</div>
+        <p class="text-xs sm:text-sm font-semibold leading-tight">50 минуттық жеке сабақтар</p>
+      </div>
+      <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-3 sm:p-4 text-center">
+        <div class="text-2xl mb-1">🧠</div>
+        <p class="text-xs sm:text-sm font-semibold leading-tight">Кешенді жүйе: АВА + АФК/СИ</p>
+      </div>
+      <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-3 sm:p-4 text-center">
+        <div class="text-2xl mb-1">🎯</div>
+        <p class="text-xs sm:text-sm font-semibold leading-tight">Арнайы сенсорлық жабдықтар</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3-БЛОК: ИНТЕРАКТИВТІ ЧЕК-ЛИСТ
+============================================================ -->
+<section class="py-12 px-4 bg-white reveal" id="checklist">
+  <div class="max-w-2xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-6">
+      <span class="inline-block bg-red-50 text-red-600 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+        ⚠️ Маңызды диагностика
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-black text-brand-blue mb-3">
+        Балаңызда осы белгілер байқала ма?
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg mx-auto">
+        Балаңызға сәйкес келетін белгілерді таңдап, төмендегі батырманы басыңыз — біз сізге WhatsApp-та жеке шешімін айтамыз:
+      </p>
+    </div>
+
+    <!-- Symptom Buttons -->
+    <div class="space-y-3 mb-6" id="symptom-list">
+      <button class="symptom-btn" data-symptom="🗣 Тілі шықпай жүр (ЗРР, ЗПР) немесе сөздік қоры аз" onclick="toggleSymptom(this)">
+        <span class="check-circle"></span>
+        <span>🗣 Тілі шықпай жүр (ЗРР, ЗПР) немесе сөздік қоры аз</span>
+      </button>
+      <button class="symptom-btn" data-symptom="👂 Атын атап шақырғанда бұрылып қарамайды" onclick="toggleSymptom(this)">
+        <span class="check-circle"></span>
+        <span>👂 Атын атап шақырғанда бұрылып қарамайды</span>
+      </button>
+      <button class="symptom-btn" data-symptom="⚡ Бір орында отыра алмайды, тоқтамай жүгіреді (СДВГ)" onclick="toggleSymptom(this)">
+        <span class="check-circle"></span>
+        <span>⚡ Бір орында отыра алмайды, тоқтамай жүгіреді (СДВГ)</span>
+      </button>
+      <button class="symptom-btn" data-symptom="🦶 Аяғының ұшымен (носочкимен) жүреді" onclick="toggleSymptom(this)">
+        <span class="check-circle"></span>
+        <span>🦶 Аяғының ұшымен (носочкимен) жүреді</span>
+      </button>
+      <button class="symptom-btn" data-symptom="💢 Басқа балаларды ұрады, итереді немесе жиі жылайды (истерика)" onclick="toggleSymptom(this)">
+        <span class="check-circle"></span>
+        <span>💢 Басқа балаларды ұрады, итереді немесе жиі жылайды (истерика)</span>
+      </button>
+      <button class="symptom-btn" data-symptom="🧸 Денесі тым жұмсақ (гипотонус), тез шаршайды, жиі сүрінеді" onclick="toggleSymptom(this)">
+        <span class="check-circle"></span>
+        <span>🧸 Денесі тым жұмсақ (гипотонус), тез шаршайды, жиі сүрінеді</span>
+      </button>
+      <button class="symptom-btn" data-symptom="🧩 Аутизм (РАС) белгілері бар немесе көз контактісі жоқ" onclick="toggleSymptom(this)">
+        <span class="check-circle"></span>
+        <span>🧩 Аутизм (РАС) белгілері бар немесе көз контактісі жоқ</span>
+      </button>
+      <button class="symptom-btn" data-symptom="💧 Энурез немесе сенсорлық сезімталдық бұзылысы бар" onclick="toggleSymptom(this)">
+        <span class="check-circle"></span>
+        <span>💧 Энурез немесе сенсорлық сезімталдық бұзылысы бар</span>
+      </button>
+    </div>
+
+    <!-- Dynamic Counter -->
+    <div class="flex items-center justify-between mb-4 px-1">
+      <p class="text-sm text-slate-500" id="selected-count">Таңдалған белгілер: <strong class="text-brand-blue">0</strong></p>
+      <button onclick="clearAll()" class="text-xs text-slate-400 hover:text-slate-600 underline transition-colors">Тазалау</button>
+    </div>
+
+    <!-- Dynamic CTA Button -->
+    <button onclick="sendChecklist()"
+      class="w-full bg-brand-blue hover:bg-blue-800 active:scale-95 text-white font-black text-base sm:text-lg py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Белгіленген сұрақтар бойынша маманға жазу ➡️
+    </button>
+
+    <!-- Trust note -->
+    <p class="text-center text-xs text-slate-400 mt-3">🔒 Жеке деректеріңіз қорғалған. Тек маман ғана жауап береді.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     4-БЛОК: БАҒЫТТАР МЕН ЗАЛДАР
+============================================================ -->
+<section class="py-12 px-4 bg-brand-lightbg reveal" id="services">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-8">
+      <span class="inline-block bg-blue-50 text-brand-blue text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+        Біздің бағыттар
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-black text-brand-blue">
+        Біздің бағыттар мен залдар
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+      <!-- Card 1: АФК / СИ -->
+      <div class="bg-white rounded-2xl shadow-md p-6 card-hover border-t-4 border-blue-400">
+        <div class="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-4">🏃</div>
+        <h3 class="text-lg font-black text-brand-blue mb-2">АФК & Сенсорлық интеграция (СИ)</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5">
+          Ми мен дененің байланысын орнатамыз. Ауыр баллон тарту, балансирлер, тікенек жарты шарлар, швед сатысы, 2 кг медициналық доптар, жүгіру жолағы және сенсорлық гамак-кокон арқылы баланың проприоцепциясын, тепе-теңдігін және мишығын оятамыз.
+        </p>
+        <a href="https://wa.me/77477838363?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5!%20%D0%90%D0%A4%D0%9A%20%D0%B6%D3%99%D0%BD%D0%B5%20%D0%A1%D0%B5%D0%BD%D1%81%D0%BE%D1%80%D0%BB%D1%8B%D2%9B%20%D0%B8%D0%BD%D1%82%D0%B5%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20%D1%81%D0%B0%D0%B1%D0%B0%D2%93%D1%8B%20%D0%B1%D0%BE%D0%B9%D1%8B%D0%BD%D1%88%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B0%D0%BB%D2%93%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96."
+           target="_blank" rel="noopener"
+           class="block text-center bg-blue-50 hover:bg-brand-blue hover:text-white text-brand-blue font-bold text-sm py-3 rounded-xl transition-all border border-blue-100 hover:border-brand-blue">
+          АФК/СИ-ге жазылу →
+        </a>
+      </div>
+
+      <!-- Card 2: АВА / Нейропсихология -->
+      <div class="bg-white rounded-2xl shadow-md p-6 card-hover border-t-4 border-purple-400">
+        <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-3xl mb-4">🧠</div>
+        <h3 class="text-lg font-black text-brand-blue mb-2">АВА-терапия & Нейропсихология</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5">
+          Баланың мінез-құлқын түзету, үстел басында отыру дағдысын қалыптастыру, нұсқаулықтарды түсіну, логика мен сөйлеу қабілетін дамыту. Арнайы жабдықталған жеке АВА кабинетінде өтеді.
+        </p>
+        <a href="https://wa.me/77477838363?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5!%20%D0%90%D0%92%D0%90-%D1%82%D0%B5%D1%80%D0%B0%D0%BF%D0%B8%D1%8F%20%D0%B6%D3%99%D0%BD%D0%B5%20%D0%BD%D0%B5%D0%B9%D1%80%D0%BE%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%20%D1%81%D0%B0%D0%B1%D0%B0%D2%93%D1%8B%20%D0%B1%D0%BE%D0%B9%D1%8B%D0%BD%D1%88%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20%D0%B0%D0%BB%D2%93%D1%8B%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96."
+           target="_blank" rel="noopener"
+           class="block text-center bg-purple-50 hover:bg-purple-700 hover:text-white text-purple-700 font-bold text-sm py-3 rounded-xl transition-all border border-purple-100 hover:border-purple-700">
+          АВА-терапияға жазылу →
+        </a>
+      </div>
+
+      <!-- Card 3: Кешенді пакет (HIT) -->
+      <div class="bg-white rounded-2xl shadow-md p-6 card-hover border-t-4 border-brand-yellow relative overflow-hidden">
+        <!-- HIT Badge -->
+        <div class="absolute top-4 right-4 bg-brand-yellow text-white text-[10px] font-black px-2 py-1 rounded-lg shadow-sm animate-bounce">
+          🔥 ХИТ
+        </div>
+        <div class="w-14 h-14 bg-amber-50 rounded-2xl flex items-center justify-center text-3xl mb-4">⚡</div>
+        <h3 class="text-lg font-black text-brand-blue mb-2">Кешенді пакет «АВА + АФК/СИ»</h3>
+        <p class="text-slate-600 text-sm leading-relaxed mb-5">
+          Ең жылдам нәтиже беретін формат! Бала алдымен АФК залында артық энергиясын шығарып, миын оятады, содан кейін АВА кабинетінде тыныш отырып білім мен дағдыны <strong class="text-brand-blue">2 есе тез меңгереді.</strong>
+        </p>
+        <a href="https://wa.me/77477838363?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5!%20%D0%9A%D0%B5%D1%88%D0%B5%D0%BD%D0%B4%D1%96%20(%D0%90%D0%92%D0%90%20%2B%20%D0%90%D0%A4%D0%9A%2F%D0%A1%D0%98)%20%D0%BF%D0%B0%D0%BA%D0%B5%D1%82%D1%96%D0%BD%D1%96%D2%A3%20%D1%88%D0%B0%D1%80%D1%82%D1%82%D0%B0%D1%80%D1%8B%20%D0%BC%D0%B5%D0%BD%20%D0%B1%D0%B0%D2%93%D0%B0%D1%81%D1%8B%D0%BD%20%D0%B1%D1%96%D0%BB%D0%B3%D1%96%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96."
+           target="_blank" rel="noopener"
+           class="block text-center bg-brand-yellow hover:bg-amber-500 text-white font-bold text-sm py-3 rounded-xl transition-all shadow-md">
+          Кешенді пакетті білу →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5-БЛОК: САБАҚ ҚАЛАЙ ӨТЕДІ?
+============================================================ -->
+<section class="py-12 px-4 bg-white reveal" id="how-it-works">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-8">
+      <span class="inline-block bg-green-50 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+        Тиімді формула
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-black text-brand-blue">
+        Сабақ қалай өтеді?
+      </h2>
+      <p class="text-slate-500 text-sm mt-2">50 минуттық ғылыми негізделген бағдарлама</p>
+    </div>
+
+    <div class="space-y-6 relative">
+
+      <!-- Step 1 -->
+      <div class="flex gap-4 items-start timeline-step relative">
+        <div class="flex-shrink-0 w-12 h-12 bg-brand-blue rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-md">
+          1
+        </div>
+        <div class="bg-brand-soft rounded-2xl p-5 flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">🏋️</span>
+            <span class="text-xs font-bold text-brand-blue bg-blue-100 px-2 py-0.5 rounded-full">35–40 минут</span>
+          </div>
+          <h3 class="font-black text-brand-blue text-base mb-1">Белсенді нейро-жаттығулар</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Кедергілер жолағы, бұлшықетке жүктеме, тепе-теңдік және АВА тапсырмалары.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="flex gap-4 items-start timeline-step relative">
+        <div class="flex-shrink-0 w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-md">
+          2
+        </div>
+        <div class="bg-purple-50 rounded-2xl p-5 flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">🌊</span>
+            <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2 py-0.5 rounded-full">5–7 минут</span>
+          </div>
+          <h3 class="font-black text-purple-800 text-base mb-1">Сенсорлық тынышталу / Заземление</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Сенсорлық гамак-коконда тербелу немесе ауыр көрпемен релаксация — <strong>бала сабақтан жыламай, тыныш шығады.</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="flex gap-4 items-start timeline-step relative">
+        <div class="flex-shrink-0 w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center text-white font-black text-lg shadow-md">
+          3
+        </div>
+        <div class="bg-green-50 rounded-2xl p-5 flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xl">💬</span>
+            <span class="text-xs font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded-full">3–5 минут</span>
+          </div>
+          <h3 class="font-black text-green-800 text-base mb-1">Ата-анамен кері байланыс</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Әр сабақтан соң маман баланың бүгінгі жетістігі мен үй тапсырмасын түсіндіреді.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mid-section CTA -->
+    <div class="mt-8 text-center">
+      <a href="https://wa.me/77477838363?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5!%20%D0%91%D0%B0%D0%BB%D0%B0%D0%BC%D0%B4%D1%8B%20%D0%B1%D0%B0%D1%81%D1%82%D0%B0%D0%BF%D2%9B%D1%8B%20%D1%81%D0%B0%D0%B1%D0%B0%D2%9B%D2%9B%D0%B0%20%D0%B6%D0%B0%D0%B7%D1%8B%D0%BF%20%D0%BA%D3%A9%D1%80%D0%B3%D1%96%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96."
+         target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2 bg-brand-blue text-white font-bold text-sm px-6 py-3 rounded-xl hover:bg-blue-800 transition-all hover:scale-105 active:scale-95 shadow-md">
+        📅 Бастапқы сабаққа жазылу
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6-БЛОК: НЕГЕ БІЗДІ ТАҢДАЙДЫ?
+============================================================ -->
+<section class="py-12 px-4 bg-brand-lightbg reveal" id="why-us">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-8">
+      <span class="inline-block bg-yellow-50 text-yellow-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+        Сенім артыңыз
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-black text-brand-blue">
+        Неге ата-аналар бізді таңдайды?
+      </h2>
+    </div>
+
+    <!-- Founders block -->
+    <div class="bg-white rounded-2xl shadow-md p-6 mb-6 border-l-4 border-brand-yellow">
+      <div class="flex gap-4 items-start">
+        <div class="text-4xl">👥</div>
+        <div>
+          <h3 class="font-black text-brand-blue text-base mb-2">Орталықтың негізін қалаушылар</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Орталықты Арыс халқына танымал жобалардың авторы, <strong class="text-brand-blue">АФК және Сенсорлық интеграция маманы Ерболсын</strong> және <strong class="text-brand-blue">кәсіби АВА-терапевт, нейропсихолог маман</strong> бірігіп ашты. Екі мамандықтың күші бір орталықта!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+      <div class="bg-white rounded-2xl p-5 shadow-sm card-hover text-center">
+        <div class="text-4xl mb-3">🔬</div>
+        <h4 class="font-black text-brand-blue text-sm mb-2">Кәсіби жабдықтар</h4>
+        <p class="text-slate-500 text-xs leading-relaxed">
+          Жасанды ойыншықтар емес — кәсіби реабилитациялық және сенсорлық құралдар.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-sm card-hover text-center">
+        <div class="text-4xl mb-3">📋</div>
+        <h4 class="font-black text-brand-blue text-sm mb-2">Жеке бағдарлама</h4>
+        <p class="text-slate-500 text-xs leading-relaxed">
+          Әр баланың диагнозы мен мінезіне қарай жеке жасалған бағдарлама.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-sm card-hover text-center">
+        <div class="text-4xl mb-3">📍</div>
+        <h4 class="font-black text-brand-blue text-sm mb-2">Ыңғайлы орналасу</h4>
+        <p class="text-slate-500 text-xs leading-relaxed">
+          Арыстың дәл орталығында, Тәжібаев 11/1 — барлығына ыңғайлы.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="mt-6 bg-brand-blue rounded-2xl p-6 text-white grid grid-cols-3 gap-4 text-center">
+      <div>
+        <div class="text-3xl font-black text-brand-yellow">50+</div>
+        <div class="text-xs text-blue-200 mt-1">Бала</div>
+      </div>
+      <div class="border-x border-white/20">
+        <div class="text-3xl font-black text-brand-yellow">2</div>
+        <div class="text-xs text-blue-200 mt-1">Маман</div>
+      </div>
+      <div>
+        <div class="text-3xl font-black text-brand-yellow">100%</div>
+        <div class="text-xs text-blue-200 mt-1">Нәтиже</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7-БЛОК: БАЙЛАНЫС ЖӘНЕ МЕКЕНЖАЙ (FOOTER)
+============================================================ -->
+<section class="py-12 px-4 bg-brand-blue text-white reveal" id="contact">
+  <div class="max-w-2xl mx-auto text-center">
+    <div class="text-4xl mb-4">📍</div>
+    <h2 class="text-2xl sm:text-3xl font-black mb-2">Байланыс және мекенжай</h2>
+    <p class="text-blue-200 text-sm mb-8">Сұрақтарыңызға жауап беруге дайынбыз!</p>
+
+    <!-- Contact cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left">
+        <div class="text-2xl mb-2">📍</div>
+        <h3 class="font-bold text-sm mb-1">Мекенжай</h3>
+        <p class="text-blue-200 text-sm">Арыс қаласы,<br>Тәжібаев көшесі, 11/1</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left">
+        <div class="text-2xl mb-2">📱</div>
+        <h3 class="font-bold text-sm mb-1">Телефон / WhatsApp</h3>
+        <a href="tel:+77477838363" class="text-brand-yellow font-bold text-base hover:underline">
+          +7 747 783 83 63
+        </a>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-left sm:col-span-2">
+        <div class="text-2xl mb-2">📸</div>
+        <h3 class="font-bold text-sm mb-1">Instagram</h3>
+        <a href="https://www.instagram.com/aba.afk.arys" target="_blank" rel="noopener"
+           class="text-brand-yellow font-bold hover:underline">
+          @aba.afk.arys
+        </a>
+        <p class="text-blue-200 text-xs mt-1">Жетістіктерді, сабақтар мен жаңалықтарды Instagram-да жариялаймыз</p>
+      </div>
+    </div>
+
+    <!-- Final big CTA -->
+    <a href="https://wa.me/77477838363?text=%D0%A1%D3%99%D0%BB%D0%B5%D0%BC%D0%B5%D1%82%D1%81%D1%96%D0%B7%20%D0%B1%D0%B5!%20%D0%9E%D1%80%D1%82%D0%B0%D0%BB%D1%8B%D2%9B%D1%82%D1%8B%D2%A3%20%D0%BD%D0%B0%D2%9B%D1%82%D1%8B%20%D0%BC%D0%B5%D0%BA%D0%B5%D0%BD%D0%B6%D0%B0%D0%B9%D1%8B%D0%BD%20%D0%B6%D3%99%D0%BD%D0%B5%20%D0%B4%D0%B8%D0%B0%D0%B3%D0%BD%D0%BE%D1%81%D1%82%D0%B8%D0%BA%D0%B0%D2%93%D0%B0%20%D0%B1%D0%BE%D1%81%20%D1%83%D0%B0%D2%9B%D1%8B%D1%82%D1%82%D1%8B%20%D0%B1%D1%96%D0%BB%D0%B3%D1%96%D0%BC%20%D0%BA%D0%B5%D0%BB%D0%B5%D0%B4%D1%96."
+       target="_blank" rel="noopener"
+       class="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-green-400 text-white font-black text-base sm:text-lg px-6 py-4 rounded-2xl shadow-2xl transition-all hover:scale-105 active:scale-95 w-full sm:w-auto mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      📍 WhatsApp-қа жазып, мекенжай мен бос уақытты білу
+    </a>
+
+    <!-- Footer bottom -->
+    <div class="border-t border-white/15 pt-6 mt-4">
+      <p class="text-blue-300 text-xs">
+        © 2024 ABA • AFK • ARYS — Арыс қалалық нейродаму орталығы<br>
+        Барлық құқықтар қорғалған.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  // ─── Checklist logic ───────────────────────────────────────
+  const selectedSymptoms = new Set();
+
+  function toggleSymptom(btn) {
+    const symptom = btn.getAttribute('data-symptom');
+    if (selectedSymptoms.has(symptom)) {
+      selectedSymptoms.delete(symptom);
+      btn.classList.remove('selected');
+    } else {
+      selectedSymptoms.add(symptom);
+      btn.classList.add('selected');
+    }
+    updateCounter();
+  }
+
+  function updateCounter() {
+    const count = selectedSymptoms.size;
+    const el = document.getElementById('selected-count');
+    el.innerHTML = `Таңдалған белгілер: <strong class="text-brand-blue">${count}</strong>`;
+  }
+
+  function clearAll() {
+    selectedSymptoms.clear();
+    document.querySelectorAll('.symptom-btn').forEach(b => b.classList.remove('selected'));
+    updateCounter();
+  }
+
+  function sendChecklist() {
+    let message;
+    if (selectedSymptoms.size === 0) {
+      message = 'Сәлеметсіз бе! Балам бойынша маманнан консультация алғым келеді.';
+    } else {
+      const list = Array.from(selectedSymptoms).join(', ');
+      message = `Сәлеметсіз бе! Сайттан жазып тұрмын. Консультация алғым келеді. Баламда мынадай белгілер бар: ${list}.`;
+    }
+    const url = `https://wa.me/77477838363?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  // ─── Scroll reveal ─────────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ─── Init Lucide icons ─────────────────────────────────────
+  if (window.lucide) lucide.createIcons();
+</script>
+
+</body>
+</html>
